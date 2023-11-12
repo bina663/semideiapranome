@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+    <title>Capiche</title>
+    <style>
+        *{
+            margin: 0%;
+            padding: 0%;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        .container{
+            width: 600px;
+            height: 600px;
+            background-color: pink;
+            position: absolute;
+            top:50%;left:50%;
+            transform: translate(-50%,-50%);
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container div{
+            width: 90%;
+            text-align: center;
+        }
+        img{
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border: 3px solid #fff;
+        }
+
+        button{
+            padding: 8px 40px;
+            border: 1px solid #ffff;
+            color: #ffff;
+            font-weight: 500;
+            transition:  all 0.2s;
+
+        }
+        #yes{
+            background-color: rgb(64, 212, 64);
+        }
+        #yes:hover{
+            background-color: rgb(61, 170, 61);
+            color: #e0e0e0;
+        }
+        #no{
+            background-color: rgb(224, 54, 54);
+        }
+        #no:hover{
+            background-color: rgb(172, 46, 46);
+            color: #e0e0e0;
+        }
+        .visible, img{
+            margin: 20px;
+        }
+        #text{
+            width: 100%;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1 class="visible">Oi, Você ainda me ama?</h1>
+            <section>
+                <img id="img" src="" alt="">
+            </section>
+            <div class="visible" id="attempt">
+            </div>
+            <section class="visible">
+                <button id="yes" onclick="yes()">Sim</button>
+                <button id="no" onclick="no()">Não</button>
+            </section>
+            <section>
+                <h3 id="text">
+                </h3>
+            </section>
+        </div>
+    </div>
+
+    <script>
+
+        let attempt = 0;
+        const buttonNo = document.querySelector("#no");
+        const buttonYes = document.querySelector("#yes");
+        const divText = document.querySelector("#text")
+        const img =  document.querySelector("#img");
+        const h1 = document.querySelector("h1");
+        const attemptText = document.querySelector("#attempt")
+        let attempts = 4
+        attemptText.innerText = "Tentativas: " + attempts
+        const badMessage = ["Mais uma chance, leia novamente e responda ._.", "De novo -_- , mais uma chance", "Eu sou uma piada pra vc?, ultima chance ;-;", "Entendi Game Over pra vc, Adeus Yuki"];
+
+        //Img inicia com essa imagem
+        img.src = "https://i.pinimg.com/564x/cc/d3/5f/ccd35f88f9fa8bcfb486b0fd0f5e4372.jpg";
+        
+        const catCry = "";
+        
+        const imgsCatsAngry = ["https://vetplus.vet.br/wp-content/uploads/2019/12/meme-da-mulher-gritando-com-o-gato-na-mesa-og-1080x630.jpg","https://i.pinimg.com/564x/4c/f5/5e/4cf55e05065c41d2067474621b50d0a9.jpg","https://i.imgflip.com/2sufzt.png"]
+
+
+        const yes = () => {
+            const visibleElements = document.querySelectorAll(".visible");
+            visibleElements.forEach(element => {
+                element.style.display = "none";
+            });
+            if(attempt == 0){
+                //gatinho com coracao
+                img.src = "https://i.pinimg.com/originals/23/86/e3/2386e3023848e6754b8f0ad9597676a7.jpg"
+                divText.innerHTML = "uhhhh logo de primeira, ainda te amo tbm, alias mais q vc :3"
+            }else{
+                //gatinho serio
+                img.src = "https://www.elpais.com.co/resizer/mBPF0ANIhK9C8OBjoh-0-3RA_5c=/1280x720/smart/filters:format(jpg):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/semana/ES4YNNALTVAY3I5RENIXL5WIQI.jpg"
+                divText.innerHTML = "hmmmmmm ._., se amasse n teria optado pelo nao, mas tbm te amo ainda, beijao :3"
+            }
+        }
+
+        const no = () => {
+            img.src = imgsCatsAngry[attempt]
+            divText.innerHTML = badMessage[attempt]
+            if(attempt >= 3){
+                //gatinho dando joinha
+                img.src  = "https://museudememes.com.br/wp-content/uploads/2022/05/bf3d6d63d767c049a5073f56581e8275.jpg"
+                const visibleElements = document.querySelectorAll(".visible");
+                visibleElements.forEach(element => {
+                    element.style.display = "none";
+                });
+            }
+            attempts -= 1
+            attempt += 1
+            attemptText.innerText = "Tentativas: " + attempts
+
+        }
+    </script>
+</body>
+</html>
